@@ -2,6 +2,8 @@
 
 Browser Recipes turns a demonstrated website task into a tool that an MCP client can call. Record the task in a Chromium browser, choose what the tool should return, and review the recipe. Browser Recipes tests it in a local headless browser and saves it after a successful run.
 
+![Browser Recipes demo showing a task recorded on example.org, its output selected, and the tested tool listed on its MCP server](docs/images/record-to-mcp.gif)
+
 ## Quick start
 
 Requires Node.js 22+, pnpm, and a Chromium-based browser for the extension. Install the browser used by the backend separately.
