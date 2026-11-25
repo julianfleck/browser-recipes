@@ -2,7 +2,7 @@
 
 Browser Recipes turns a demonstrated website task into a tool that an MCP client can call. Record the task in a Chromium browser, choose what the tool should return, and review the recipe. Browser Recipes tests it in a local headless browser and saves it after a successful run.
 
-![Browser Recipes demo showing a task recorded on example.org, its output selected, and the tested tool listed on its MCP server](docs/images/record-to-mcp.gif)
+![Browser Recipes demo selecting the Europa Clipper mission title and summary on NASA Science and publishing the tested tool to MCP](docs/images/record-to-mcp.gif)
 
 ## Quick start
 
@@ -15,11 +15,11 @@ pnpm dev
 ```
 
 1. Open <http://127.0.0.1:5173/install> in your Chromium browser. Download and unzip the extension. Enable Developer mode in the browser's extensions manager and load the folder containing `manifest.json`.
-2. Reload the local workspace in that browser to pair the extension. For a smoke test, open <https://example.org/> and describe a simple task such as “Return the page heading.”
-3. Start recording, grant access to the demo origin, then finish the recording and select the heading as the output. Choose **Build my tool** and review the test result.
+2. Reload the local workspace in that browser to pair the extension. To follow the demo, open the [Europa Clipper mission page](https://science.nasa.gov/mission/europa-clipper/) and enter “Get the Europa Clipper mission brief.”
+3. Start recording, grant access to the demo origin, then finish the recording and select the mission heading, then Shift-click the summary to add it. Choose **Build my tool** and review the test result.
 4. In **MCPs**, open the server for that site and use **Connect agent** to copy its local endpoint and access token into your MCP client. Keep the backend running for calls. The recording browser can close.
 
-Model assistance is optional. To enable it, copy `backend/.env.example` to `backend/.env`, fill in your own OpenRouter key, and restart. Task descriptions and action structure go to OpenRouter when configured. Keep credentials and private content out of those descriptions.
+To use model-assisted preparation with **Build my tool**, copy `backend/.env.example` to `backend/.env`, fill in your own OpenRouter key, and restart. Task descriptions and action structure go to OpenRouter when configured. Keep credentials and private content out of those descriptions.
 
 ## Contribute
 
