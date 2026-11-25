@@ -1,0 +1,8 @@
+.workflow-progress { display: flex; align-items: center; gap: 0; margin: 0; padding: 0; list-style: none; }
+.workflow-progress li { display: flex; align-items: center; gap: 7px; color: #929aa7; font: 11px/1.5 var(--font-body); white-space: nowrap; }
+.workflow-progress li + li::before { content: ''; width: 24px; height: 1px; margin: 0 11px; background: #e2e6ec; }
+.workflow-progress li > span { display: grid; place-items: center; width: 19px; height: 19px; border: 1px solid #e2e6ec; border-radius: 50%; background: #fff; color: inherit; font-size: 10px; }
+.workflow-progress strong { font-weight: 450; }
+.workflow-progress li[data-state=current] { color: #40546f; }.workflow-progress li[data-state=current] > span { border-color: #4b65b5; background: #4b65b5; color: #fff; }.workflow-progress li[data-state=current] strong { font-weight: 550; }
+.workflow-progress li[data-state=complete] { color: #6b8278; }.workflow-progress li[data-state=complete] > span { border-color: #d6e5dc; background: #f3f8f5; color: #608772; }
+@media(max-width:600px) { .workflow-progress li { gap: 5px; font-size: 10px; }.workflow-progress li+li::before { width: 12px; margin: 0 7px; } }

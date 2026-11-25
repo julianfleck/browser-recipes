@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "example_org.latest_notice",
+  "provider": "example_org",
+  "origin": "https://example.org",
+  "effect": "read",
+  "path": "/inbox",
+  "signedInSelector": "[data-account]",
+  "readySelector": "main",
+  "checks": [],
+  "extract": [
+    {
+      "field": "message",
+      "selector": "article",
+      "pick": "first",
+      "maxLength": 1000
+    }
+  ]
+}

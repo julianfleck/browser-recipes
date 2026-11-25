@@ -1,0 +1,33 @@
+:root { color-scheme: light; font-family: var(--font-body); color: var(--ink); background: #fff; font-synthesis: none; -webkit-font-smoothing: antialiased; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+a { color: inherit; }
+h1, h2, h3, p { margin-top: 0; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.loading { padding: 32px; color: var(--muted); font-size: 13px; }
+.workspace-main.install-main { max-width: 960px; }
+.install-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+.install-heading-icon { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 12px; background: #fafbfc; color: var(--muted); flex: none; }
+.install-heading h1 { margin: 0 0 5px; font-size: 24px; font-weight: 600; letter-spacing: -.035em; }
+.install-heading p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.install-card { border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+.browser-picker { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; width: fit-content; border: 1px solid var(--line); border-radius: 8px; background: #f7f8fa; }
+.browser-picker button { min-height: 32px; padding: 0 14px; border: 1px solid transparent; border-radius: 5px; background: transparent; color: var(--muted); font-size: 12px; font-weight: 500; }
+.browser-picker button.selected { background: #fff; border-color: #e1e4e9; box-shadow: var(--shadow-resting); color: var(--ink); }
+.install-download { margin-top: 26px; }
+.install-download button { display: inline-flex; align-items: center; gap: 8px; }
+.install-address { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 24px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fafbfc; }
+.install-address span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.install-address code { color: var(--ink); font-size: 12px; overflow-wrap: anywhere; }
+.install-notice { margin: 16px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.install-steps { margin: 26px 0 0; padding: 0; list-style: none; counter-reset: install; }
+.install-steps li { counter-increment: install; position: relative; min-height: 32px; margin-bottom: 16px; padding: 4px 0 0 38px; color: #565d68; font-size: 13px; line-height: 1.6; }
+.install-steps li:last-child { margin-bottom: 0; }
+.install-steps li::before { content: counter(install); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+@media (hover: hover) and (pointer: fine) { .browser-picker button:hover { color: var(--ink); background: #eceef2; } }
+@media (max-width: 600px) { .install-card { padding: 18px; } .install-heading { align-items: flex-start; } .install-heading h1 { font-size: 21px; } .browser-picker button { padding: 0 10px; } }

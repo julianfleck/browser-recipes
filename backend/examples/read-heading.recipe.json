@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "id": "example_org.read_heading",
+  "provider": "example_org",
+  "origin": "https://example.org",
+  "title": "Read the page heading",
+  "description": "Return the heading from the public example page.",
+  "effect": "interaction",
+  "allowWrites": false,
+  "steps": [
+    { "id": "open-page", "type": "navigation", "path": "/", "label": "Open example.org" },
+    { "id": "read-heading", "type": "output", "path": "/", "selector": "h1", "mode": "one", "label": "Read the heading" }
+  ]
+}

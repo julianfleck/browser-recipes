@@ -1,0 +1,25 @@
+.browser-run { margin-top: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fafbfc; color: var(--ink); }
+.browser-run-head { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.browser-run-mark { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border: 1px solid #e1e6ee; border-radius: 8px; background: #fff; color: #7284a3; }
+.browser-run.is-active .browser-run-mark { border-color: #dce4f4; background: #f3f6fc; color: var(--accent); }
+.browser-run.is-active .browser-run-mark svg { animation: browser-run-turn 1.6s linear infinite; }
+.browser-run.is-failed .browser-run-mark { border-color: #f0ddd8; background: #fff6f3; color: #ad6756; }
+.browser-run.is-passed .browser-run-mark { border-color: #d7eadd; background: #f1faf3; color: #45835c; }
+.browser-run-title { min-width: 0; flex: 1; }
+.browser-run-title strong { display: block; font-size: 13px; font-weight: 550; line-height: 1.5; }
+.browser-run-time { display: inline-flex; align-items: center; gap: 5px; flex: none; color: #737f90; font-size: 11px; font-variant-numeric: tabular-nums; }
+.browser-run-toggle { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border: 0; border-radius: 6px; background: transparent; color: #788596; cursor: pointer; }
+.browser-run-toggle[aria-expanded=false] svg { transform: rotate(-90deg); }
+.browser-run-body { max-width: 620px; margin: 17px 0 0 45px; }
+.browser-run-progress > span { display: block; margin-top: 9px; color: #768293; font-size: 11px; }
+.browser-run-progress [role=progressbar] { font-size: 11px; }
+.browser-run-timeline { margin-top: 8px; }
+.browser-run-result { max-width: 620px; margin: 14px 0 0 45px; color: #5f6d83; font-size: 12px; }
+.browser-run-result summary { cursor: pointer; }.browser-run-result > div { margin-top: 12px; }
+.browser-run-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+.browser-run-actions button { display: inline-flex; align-items: center; gap: 7px; }
+.browser-run-actions button:disabled { opacity: .55; cursor: default; }
+@keyframes browser-run-turn { to { transform: rotate(360deg); } }
+@media (hover: hover) and (pointer: fine) { .browser-run-toggle:hover { background: #eef1f6; } }
+@media (max-width: 600px) { .browser-run { padding: 16px; } .browser-run-body, .browser-run-result { margin-left: 0; } .browser-run-time { font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { .browser-run.is-active .browser-run-mark svg { animation: none; } }

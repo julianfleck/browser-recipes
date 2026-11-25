@@ -1,0 +1,12 @@
+{
+  "name": "agent-session-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --dir frontend dev",
+    "setup": "pnpm --dir backend install --frozen-lockfile && pnpm --dir frontend install --frozen-lockfile",
+    "workflow": "pnpm --dir backend workflow:browser",
+    "test": "pnpm --dir backend test && pnpm --dir frontend test && pnpm --dir frontend typecheck && pnpm --dir frontend build"
+  }
+}
