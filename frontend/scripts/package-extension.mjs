@@ -6,8 +6,8 @@ import path from 'node:path';
 const frontend = fileURLToPath(new URL('..', import.meta.url));
 const extension = path.join(frontend, 'extension');
 const built = path.join(frontend, 'extension-build');
-const destination = path.join(frontend, 'public', 'agent-session-bridge.zip');
-const folder = 'agent-session-bridge/';
+const destination = path.join(frontend, 'public', 'browser-recipes.zip');
+const folder = 'browser-recipes/';
 
 const result = spawnSync('pnpm', ['exec', 'vite', 'build', '--config', 'vite.extension.config.js'], { cwd: frontend, stdio: 'inherit' });
 if (result.error) throw result.error;

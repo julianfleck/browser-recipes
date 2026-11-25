@@ -1,6 +1,6 @@
-# Agent Session Bridge
+# Browser Recipes
 
-Bridge turns a demonstrated website task into a tool that an MCP client can call. Record the task in a Chromium browser, choose what the tool should return, and review the recipe. Bridge tests it in a local headless browser and saves it after a successful run.
+Browser Recipes turns a demonstrated website task into a tool that an MCP client can call. Record the task in a Chromium browser, choose what the tool should return, and review the recipe. Browser Recipes tests it in a local headless browser and saves it after a successful run.
 
 ## Quick start
 
@@ -29,8 +29,8 @@ Model assistance is optional. To enable it, copy `backend/.env.example` to `back
 
 Run `pnpm test` to check the backend, extension, frontend types, and production build. Use controlled fixtures for browser tests. When reporting a problem, include the failing step and a redacted error with a public or synthetic reproduction.
 
-Bridge is a single-user localhost project. Keep both services on loopback. Login portability depends on the website. Replay is scoped to the authorized origin, and mutating requests require approval for the exact recipe. Only tested, saved, unarchived tools are callable on an active MCP.
+Browser Recipes is a single-user localhost project. Keep both services on loopback. Login portability depends on the website. Replay is scoped to the authorized origin, and mutating requests require approval for the exact recipe. Only tested, saved, unarchived tools are callable on an active MCP.
 
 ## License
 
-Bridge is released under the [MIT License](LICENSE). Vendored Arc UI components retain their [upstream MIT notice](frontend/src/components/arc/LICENSE).
+Browser Recipes is released under the [MIT License](LICENSE). Vendored Arc UI components retain their [upstream MIT notice](frontend/src/components/arc/LICENSE).

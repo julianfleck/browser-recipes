@@ -9,7 +9,7 @@ export function createOpenRouterTeacher({ key = process.env.OPENROUTER_API_KEY, 
     const request = async selectedModel => {
       const response = await fetcher('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
-      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'HTTP-Referer': 'http://127.0.0.1:5173', 'X-Title': 'Agent Session Bridge' },
+      headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'HTTP-Referer': 'http://127.0.0.1:5173', 'X-Title': 'Browser Recipes' },
       body: JSON.stringify({
         model: selectedModel,
         provider: { require_parameters: true },

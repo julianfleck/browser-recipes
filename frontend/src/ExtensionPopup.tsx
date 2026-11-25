@@ -93,9 +93,9 @@ export function Popup({preview=false}:{preview?:boolean}) {
   const testing=(['running','queued'].includes(recentData?.testJob?.state)||['refining','testing'].includes(recentData?.teaching?.build?.state));
   const workflowURL=recent?`http://127.0.0.1:5173/teachings/${encodeURIComponent(recent.id)}`:'';
   return <main className="popup-shell">
-    <header className="popup-header"><div className="mark"><BridgeMark size={19}/></div><div className="popup-brand"><strong>Bridge</strong><span>Website tools</span></div><a href="http://127.0.0.1:5173/teachings" target="_blank" rel="noopener noreferrer" aria-label="Open workspace"><ArrowUpRight size={17}/></a></header>
+    <header className="popup-header"><div className="mark"><BridgeMark size={19}/></div><div className="popup-brand"><strong>Browser Recipes</strong><span>Website tools</span></div><a href="http://127.0.0.1:5173/teachings" target="_blank" rel="noopener noreferrer" aria-label="Open workspace"><ArrowUpRight size={17}/></a></header>
     <div className="popup-content"><WorkflowProgress phase={phase} complete={!recording&&recent?.state==='saved'}/>
-      {!paired&&loaded&&<div className="notice"><strong>Connect to your workspace</strong><p>Open Bridge once in this browser to connect the extension.</p><a href="http://127.0.0.1:5173" target="_blank" rel="noopener noreferrer">Open workspace <ArrowUpRight size={12}/></a></div>}
+      {!paired&&loaded&&<div className="notice"><strong>Connect to your workspace</strong><p>Open Browser Recipes once in this browser to connect the extension.</p><a href="http://127.0.0.1:5173" target="_blank" rel="noopener noreferrer">Open workspace <ArrowUpRight size={12}/></a></div>}
       {error&&<p className="error" role="alert">{error}</p>}{!recording&&mcps.length>0&&<label className="popup-mcp-choice">Save tools to MCP<select value={mcpId} onChange={event=>setMcpId(event.target.value)}>{mcps.map(mcp=><option value={mcp.id} key={mcp.id}>{mcp.name}{mcp.enabled===false?' (inactive)':''}</option>)}</select></label>}
       {recording?<>
         <section className={`popup-site ${recording.state}`} aria-live="polite"><Globe2 size={17}/><div><span>{recording.state==='review'?'Review on':recording.state==='paused'?'Paused on':'Recording on'}</span><strong>{site}</strong></div><span className="popup-step-count"><i/>{steps} {steps===1?'step':'steps'}</span></section>
@@ -105,7 +105,7 @@ export function Popup({preview=false}:{preview?:boolean}) {
         <button className="popup-discard" disabled={busy} onClick={()=>void control('discard')}><X size={12}/> Discard recording</button>
       </>:recent&&!showNew?<>
         <section className="popup-site"><Globe2 size={17}/><div><span>Latest workflow</span><strong>{new URL(recent.origin).hostname}</strong></div>{recent.state==='saved'&&<Check size={15}/>}</section>
-        <h1>{recent.title}</h1><p className="popup-hint">{recent.state==='saved'?'Saved to your workflow catalog. You can review the recipe and its last result in Bridge.':recent.state==='needs_model'?'Your recording is saved. Open the draft to finish generating the read recipe.':'Your recipe runs headlessly with the saved website login. Test it here, then save it for your agent.'}</p>
+        <h1>{recent.title}</h1><p className="popup-hint">{recent.state==='saved'?'Saved to your workflow catalog. You can review the recipe and its last result in Browser Recipes.':recent.state==='needs_model'?'Your recording is saved. Open the draft to finish generating the read recipe.':'Your recipe runs headlessly with the saved website login. Test it here, then save it for your agent.'}</p>
         {recentData?.teaching&&<ToolPreparation item={recentData.teaching} onPrepare={(options:any)=>void toolAction('build',options)} busy={busy}/>}
         {testing?<p className="popup-hint" role="status">Testing headlessly… {recentData?.testJob?.stepLabel??''}</p>:result&&<p className={result.state==='found'?'popup-hint':'error'} role="status">{result.state==='found'?'Test passed':`Test stopped: ${result.state.replaceAll('_',' ')}`}</p>}
         {result?.state==='found'&&<div className="popup-result"><ToolResult result={result}/></div>}
@@ -114,7 +114,7 @@ export function Popup({preview=false}:{preview?:boolean}) {
         <Button variant="secondary" className="popup-new-button" disabled={!canRecord} loading={busy} onClick={()=>setShowNew(true)}>Record another tool</Button>
       </>:<>
         <section className="popup-site"><Globe2 size={17}/><div><span>Current website</span><strong>{loaded?site:'Checking browser…'}</strong></div></section>
-        <h1>What should your tool do?</h1><p className="popup-hint">Describe the task, then show it once. Bridge will turn it into a tool and check that it works.</p><label className="popup-goal-label">Your task<textarea aria-label="Your task" rows={4} maxLength={1500} value={goal} onChange={event=>setGoal(event.target.value)} placeholder="Search for men’s shoes using a query from the agent, and return the first 10 links."/></label>
+        <h1>What should your tool do?</h1><p className="popup-hint">Describe the task, then show it once. Browser Recipes will turn it into a tool and check that it works.</p><label className="popup-goal-label">Your task<textarea aria-label="Your task" rows={4} maxLength={1500} value={goal} onChange={event=>setGoal(event.target.value)} placeholder="Search for men’s shoes using a query from the agent, and return the first 10 links."/></label>
         <Button className="main-button" disabled={!canRecord||goal.trim().length<5} loading={busy} onClick={start}><span className="record-glyph"/> Start recording</Button>
       </>}
       {paired&&loaded&&!canRecord&&!recording&&<p className="popup-requirement">Open an HTTPS website to start a new recording.</p>}

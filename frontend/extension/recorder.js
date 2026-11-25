@@ -366,7 +366,7 @@
       const build=completedTeaching?.build,questions=build?.state==='awaiting_answers'?build.questions??[]:[];
       const result=completedJob?.result??completedTeaching?.test,passed=result?.state==='found';
       panel.append(el('h2','',completedState==='saved'?'Tool ready for your agent':testing?'Preparing your tool…':questions.length?'A quick question':passed?'Test passed':'Tool needs attention'));
-      panel.append(el('p','',completedState==='saved'?'Saved under this website’s MCP server.':testing?(build?.message||'Bridge is refining your demonstration and checking that it works. You can keep using this page.'):questions.length?'Choose an answer, and Bridge will finish preparing the tool.':passed?'Review the returned content, then add this tool to your website’s MCP server.':'Adjust the recipe or reconnect the website in Bridge, then retry.'));
+      panel.append(el('p','',completedState==='saved'?'Saved under this website’s MCP server.':testing?(build?.message||'Browser Recipes is refining your demonstration and checking that it works. You can keep using this page.'):questions.length?'Choose an answer, and Browser Recipes will finish preparing the tool.':passed?'Review the returned content, then add this tool to your website’s MCP server.':'Adjust the recipe or reconnect the website in Browser Recipes, then retry.'));
       if(build?.summary)panel.append(el('p','',build.summary));
       if(questions.length){const form=el('form'),continueButton=el('button','submit','Continue');continueButton.type='submit';continueButton.disabled=true;for(const question of questions){const field=el('fieldset','build-question');field.append(el('legend','',question.prompt));for(const option of question.options){const label=el('label'),radio=el('input');radio.type='radio';radio.name=`question-${question.eventIndex}`;radio.value=option.value;radio.checked=buildAnswers[question.eventIndex]===option.value;radio.onchange=()=>{buildAnswers[question.eventIndex]=option.value;continueButton.disabled=questions.some(item=>!buildAnswers[item.eventIndex]);};label.append(radio,el('span','',option.label));field.append(label);}form.append(field);}form.append(continueButton);form.onsubmit=event=>{event.preventDefault();void buildTool({answers:{...buildAnswers}});};panel.append(form);}
       if(testing&&completedJob?.stepLabel)panel.append(el('p','selection',`Step ${(completedJob.stepIndex??0)+1} · ${completedJob.stepLabel}`));
@@ -383,7 +383,7 @@
       }
       if(passed&&completedState!=='saved'&&!build)panel.append(button(submitting?'Saving…':'Save tool','Save tool',()=>void saveTool(),'submit full-button'));
       if(!testing&&!questions.length&&completedState!=='saved')panel.append(button('Try preparing again','Try preparing again',()=>void buildTool(),'tool full-button'));
-      const link=el('a','continue-link',completedState==='saved'?'View tool in Bridge ↗':'Edit recipe in Bridge ↗');link.href=`http://127.0.0.1:5173/teachings/${encodeURIComponent(completedId)}`;link.target='_blank';link.rel='noopener noreferrer';panel.append(link);
+      const link=el('a','continue-link',completedState==='saved'?'View tool in Browser Recipes ↗':'Edit recipe in Browser Recipes ↗');link.href=`http://127.0.0.1:5173/teachings/${encodeURIComponent(completedId)}`;link.target='_blank';link.rel='noopener noreferrer';panel.append(link);
       if(build?.state==='needs_attention'&&build.message)panel.append(el('p','error',build.message));
       if(error)panel.append(el('p','error',error));return;
     }
@@ -392,7 +392,7 @@
       panel.append(el('p', '', mode === 'paused' ? 'Resume when you’re ready. Paused actions are left out.' : 'Use the website normally. When you’re finished, review the steps and choose the result to read.'));
     } else {
       panel.append(el('h2', '', 'Choose what to return'));
-      panel.append(el('p', '', 'Choose the content the agent should receive. Bridge will handle the recipe and testing.'));
+      panel.append(el('p', '', 'Choose the content the agent should receive. Browser Recipes will handle the recipe and testing.'));
       const choices = el('div', 'choices');
       for (const [kind, label] of [['selection','Select results'],['page', 'Page text'], ['list', 'Repeated list']]) {
         const choice = button(label, label, () => {
@@ -407,7 +407,7 @@
       panel.append(el('div', 'selection', marking==='selection'?'Shift-click additional results, then choose Done selecting.':marking ? `Click ${marking === 'list' ? 'one row or card in the list' : 'the element'} on this page. This click only selects it.` : selected));
       if(selectionTargets.some(target=>target.collection&&selectionTargets.filter(other=>other.collection?.selector===target.collection.selector).length>1))panel.append(el('p','privacy','Repeated results are read by their selected positions, so a different search can return different items.'));
       if(trace.some(step=>step.type==='copy'))panel.append(button(output?'Use copied text as the result':'✓ Copied text selected','Use copied text as the result',()=>{output=null;trace=trace.filter(step=>step.type!=='output');render();},output?'tool full-button':'choice active full-button'));
-      panel.append(el('p','scope-note','Bridge will work out which inputs should change each time and which choices should stay fixed.'));
+      panel.append(el('p','scope-note','Browser Recipes will work out which inputs should change each time and which choices should stay fixed.'));
       const details = el('details');
       const summary = el('summary', '', `Review ${trace.length} recorded steps`);
       const list = el('ol');
@@ -417,7 +417,7 @@
       const goalLabel=el('label','','Your task'),goalInput=el('textarea');goalInput.id='bridge-tool-goal';goalLabel.htmlFor=goalInput.id;goalInput.rows=3;goalInput.maxLength=1500;goalInput.placeholder='Search for men’s shoes using a query from the agent, and return the first 10 links.';goalInput.value=initialGoal;goalInput.oninput=()=>{initialGoal=goalInput.value;};form.append(goalLabel,goalInput);
       const submit=el('button','submit',submitting?'Saving your demonstration…':'Build my tool');submit.type='submit';submit.disabled=submitting||(!output&&!trace.some(step=>step.type==='copy'))||Boolean(marking);form.append(submit);
       form.onsubmit=async event=>{event.preventDefault();if(initialGoal.trim().length<5){error='Describe what you want this tool to do.';render();return;}if(marking||(!output&&!trace.some(step=>step.type==='copy')))return;submitting=true;error='';render();try{const result=await send({type:'recorder:submit',goal:initialGoal,title:initialGoal.trim().slice(0,100),description:initialGoal.slice(0,1000),output,allowWrites,inputs:[...inputOptions].map(([index,value])=>({index,...value}))});completedId=result.teaching.id;completedTeaching=result.teaching;completedState=result.teaching.state;submitting=false;render();void buildTool();}catch(cause){error=cause.message;submitting=false;render();}};
-      form.append(el('p','privacy','Bridge will refine the steps, ask only if needed, and test and save the tool for you.'));panel.append(form);
+      form.append(el('p','privacy','Browser Recipes will refine the steps, ask only if needed, and test and save the tool for you.'));panel.append(form);
       const advanced=el('details','privacy');advanced.append(el('summary','','Advanced settings'),details);
       const rule=el('label','write-rule'),checkbox=el('input');checkbox.type='checkbox';checkbox.checked=allowWrites;checkbox.onchange=()=>{allowWrites=checkbox.checked;};rule.append(checkbox,el('span','','Allow the recorded form to make changes on this website'));advanced.append(rule,el('p','','Website login is stored encrypted on this computer. The model receives your task and action structure; field values and saved authentication stay local.'));panel.append(advanced);
     }

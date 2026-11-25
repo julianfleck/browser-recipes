@@ -6,7 +6,7 @@ const manifest = JSON.parse(readFileSync(new URL('../extension/manifest.json', i
 
 test('Chromium package uses an MV3 service worker and has no marketplace assumptions', () => {
   assert.deepEqual(manifest.background, { service_worker: 'background.js', type: 'module' });
-  assert.match(manifest.name, /agent.*session/i);
+  assert.equal(manifest.name, 'Browser Recipes');
   assert.equal(JSON.stringify(manifest).includes('vinted'), false);
   assert.equal(JSON.stringify(manifest).includes('vestiaire'), false);
 });

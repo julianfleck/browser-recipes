@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Agent Session Bridge",
+  "name": "Browser Recipes",
   "version": "1.3.0",
   "description": "Record website macros, test them headlessly with saved authentication, and expose them as tools for agents.",
   "permissions": [
@@ -33,7 +33,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "Agent Session Bridge",
+    "default_title": "Browser Recipes",
     "default_popup": "popup.html"
   }
 }

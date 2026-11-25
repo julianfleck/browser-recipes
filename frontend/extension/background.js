@@ -34,7 +34,7 @@ async function handleRecorder(message, sender) {
   }
   if(message.type==='recorder:save-login'){
     const tab=await call(api.tabs,'get',message.tabId),url=new URL(tab.url);if(url.protocol!=='https:')throw new Error('Open an HTTPS website first.');
-    const {pairingToken}=await call(api.storage.local,'get','pairingToken');if(!pairingToken)throw new Error('Open Bridge to pair the extension.');
+    const {pairingToken}=await call(api.storage.local,'get','pairingToken');if(!pairingToken)throw new Error('Open Browser Recipes to pair the extension.');
     return captureSite(tab.id,url.origin,pairingToken);
   }
   if(message.type==='recorder:tool'){
@@ -49,7 +49,7 @@ async function handleRecorder(message, sender) {
   if (!current) throw new Error('No recording is active.');
   if(message.type==='recorder:infer'){
     const {pairingToken}=await call(api.storage.local,'get','pairingToken');
-    if(!pairingToken)throw new Error('Open Bridge once to pair the extension.');
+    if(!pairingToken)throw new Error('Open Browser Recipes once to pair the extension.');
     const events=message.output?[...current.events.filter(event=>event.type!=='output'),message.output]:current.events;
     const response=await fetch(`${server}/api/teachings/infer`,{method:'POST',headers:{authorization:`Bearer ${pairingToken}`,'content-type':'application/json'},body:JSON.stringify({origin:current.origin,title:'Recorded action',description:'',events}),signal:AbortSignal.timeout(100000)});
     const data=await response.json();if(!response.ok)throw new Error(data.error||'Could not suggest a name');return data;

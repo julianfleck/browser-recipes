@@ -3,8 +3,8 @@ import WorkspaceChrome from './WorkspaceChrome';
 import { Download, Puzzle } from 'lucide-react';
 import { Button } from './components/arc/button/button';
 
-const archiveName = 'agent-session-bridge.zip';
-const unpackedName = 'agent-session-bridge';
+const archiveName = 'browser-recipes.zip';
+const unpackedName = 'browser-recipes';
 
 const browsers = {
   arc: {

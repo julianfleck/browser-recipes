@@ -1,4 +1,4 @@
-# Bridge workspace and browser extension
+# Browser Recipes workspace and browser extension
 
 Run `pnpm dev` from the repository root to start Vite and the backend. Open <http://127.0.0.1:5173/install> in a Chromium browser to download the unpacked extension. Enable Developer mode, load the folder with `manifest.json`, then reload the workspace to pair. Firefox and Safari have not been verified.
 
@@ -14,6 +14,6 @@ The service worker handles recording and hands it off to the backend. The app di
 ## Develop
 
 - `extension/` holds the service worker, on-page recorder and local pairing bridge. `src/ExtensionPopup.tsx` is the popup entry point.
-- `pnpm build` compiles the app and popup and generates the unpacked `extension-build/` folder along with `public/agent-session-bridge.zip`.
+- `pnpm build` compiles the app and popup and generates the unpacked `extension-build/` folder along with `public/browser-recipes.zip`.
 - For an existing unpacked installation, load the rebuilt folder or replace the files in the currently installed folder. Reload the extension and affected tabs.
 - Run `pnpm test`, `pnpm typecheck`, and `pnpm build` from this folder for frontend-only checks.

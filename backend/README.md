@@ -1,4 +1,4 @@
-# Bridge backend
+# Browser Recipes backend
 
 The backend stores recordings and website authentication, tests recipes in isolated Playwright Chromium contexts, and exposes tools through MCP Streamable HTTP.
 
