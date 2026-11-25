@@ -2,7 +2,7 @@
 
 Browser Recipes turns a demonstrated website task into a tool that an MCP client can call. Record the task in a Chromium browser, choose what the tool should return, and review the recipe. Browser Recipes tests it in a local headless browser and saves it after a successful run.
 
-![Browser Recipes demo selecting the Europa Clipper mission title and summary on NASA Science and publishing the tested tool to MCP](docs/images/record-to-mcp.gif)
+![Browser Recipes demo selecting the Europa Clipper mission title and summary on NASA Science and publishing the tested tool to MCP](docs/images/europa-clipper-mcp-demo.gif)
 
 ## Quick start
 
